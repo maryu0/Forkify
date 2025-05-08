@@ -1,0 +1,190 @@
+@use 'base';
+
+.schedule-calendar-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100rem;
+  background-color: white;
+  border-radius: 9px;
+
+  padding: 5rem 6rem;
+  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  transition: all 0.5s;
+
+  .schedule {
+    display: flex;
+    z-index: 1;
+    list-style: none;
+
+    p {
+      font-size: 13px;
+    }
+
+    &__container {
+      border-radius: 0.2rem;
+      z-index: 2;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h2 + p {
+        text-align: center;
+        max-width: 16rem;
+        padding: 1rem 0;
+      }
+
+      .error {
+        align-items: center;
+        text-align: center;
+      }
+    }
+
+    &__list {
+      list-style: none;
+      width: 20rem;
+      height: 100%;
+      border: 1px solid base.$color-grey-light-2;
+      overflow-y: auto;
+    }
+
+    #calendar {
+      // fixed size
+      width: 800px;
+      height: auto;
+      max-width: 800px;
+
+      margin-left: 2rem;
+    }
+  }
+
+  .btn--close-schedule {
+    font-family: inherit;
+    color: inherit;
+    position: absolute;
+    top: 0.5rem;
+    right: 1.6rem;
+    font-size: 3.5rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+}
+
+.draggable__el {
+  width: 20rem;
+  border-bottom: 1px solid base.$color-grey-light-2;
+
+  .preview__fig {
+    height: 35px;
+    max-width: 35px;
+    margin-right: 1rem;
+  }
+  .preview__title {
+    font-size: 10px;
+    text-wrap: wrap;
+  }
+
+  .preview__link {
+    padding: 1rem;
+
+    cursor: move;
+  }
+
+  &__data {
+    display: flex;
+    color: base.$color-grey-dark-1;
+  }
+}
+
+.btn--schedule svg {
+  stroke: #fff;
+  fill: #fff;
+}
+
+.overlay-schedule {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  transition: all 0.5s;
+}
+
+.schedules__btn__clear {
+  margin-top: 1rem;
+  color: base.$color-grad-2;
+  background: base.$color-grey-light-1;
+
+  &:hover {
+    background: base.$color-grey-light-2;
+  }
+}
+
+// Calendar styles
+.fc {
+  color: base.$color-grey-dark-1;
+
+  &-sticky {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-wrap: wrap;
+
+    font-size: 10px;
+    padding: 1rem !important;
+    height: 70px;
+
+    background-color: base.$color-grad-2;
+  }
+
+  &-event-dragging {
+    list-style: none;
+  }
+
+  &-list-event-time {
+    display: none;
+  }
+
+  &-button {
+    background-image: base.$gradient;
+    border-radius: 10rem;
+    border: none;
+    text-transform: uppercase;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    & > *:first-child {
+      margin-right: 1rem;
+    }
+  }
+
+  &-button-primary {
+    font-size: 1.4rem !important;
+  }
+}
+
+:root {
+  --fc-button-active-border-color: none;
+  --fc-button-border-color: none;
+  --fc-event-border-color: #f48982;
+  --fc-event-bg-color: base.$color-grad-2;
+}
